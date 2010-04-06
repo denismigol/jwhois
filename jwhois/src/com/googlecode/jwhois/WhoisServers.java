@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public final class WhoisServers {
 
+	private static final String WHOIS_PIR_ORG = "whois.pir.org";
 	private static final String WHOIS_NIC_NAME = "whois.nic.name";
 	private static final String WHOIS_DOTMOBIREGISTRY_NET = "whois.dotmobiregistry.net";
 	private static final String WHOIS_AFILIAS_INFO = "whois.afilias.info";
@@ -40,8 +41,12 @@ public final class WhoisServers {
 				WHOIS_EDUCAUSE_NET, "No Match"));
 		WHOIS_SERVERS.put(WHOIS_AFILIAS_INFO, new WhoisServer(
 				WHOIS_AFILIAS_INFO, "NOT FOUND"));
-		WHOIS_SERVERS.put(WHOIS_DOTMOBIREGISTRY_NET, new WhoisServer(WHOIS_DOTMOBIREGISTRY_NET, "NOT FOUND"));
-		WHOIS_SERVERS.put(WHOIS_NIC_NAME, new WhoisServer(WHOIS_NIC_NAME, "No match."));
+		WHOIS_SERVERS.put(WHOIS_DOTMOBIREGISTRY_NET, new WhoisServer(
+				WHOIS_DOTMOBIREGISTRY_NET, "NOT FOUND"));
+		WHOIS_SERVERS.put(WHOIS_NIC_NAME, new WhoisServer(WHOIS_NIC_NAME,
+				"No match."));
+		WHOIS_SERVERS
+				.put(WHOIS_PIR_ORG, new WhoisServer(WHOIS_PIR_ORG, "NOT FOUND"));
 		// TODO
 	}
 
@@ -137,7 +142,8 @@ public final class WhoisServers {
 		// mil whois.nic.mil
 		// mk whois.ripe.net
 		// mobi whois.dotmobiregistry.net
-		DOMAIN_WHOIS_SERVERS.put("mobi", WHOIS_SERVERS.get(WHOIS_DOTMOBIREGISTRY_NET));
+		DOMAIN_WHOIS_SERVERS.put("mobi", WHOIS_SERVERS
+				.get(WHOIS_DOTMOBIREGISTRY_NET));
 		// ms whois.nic.ms
 		// mt whois.ripe.net
 		// mu whois.nic.mu
@@ -154,6 +160,7 @@ public final class WhoisServers {
 		// nu whois.nic.nu
 		// nz whois.srs.net.nz
 		// org whois.pir.org
+		DOMAIN_WHOIS_SERVERS.put("org", WHOIS_SERVERS.get(WHOIS_PIR_ORG));
 		// pl whois.dns.pl
 		// pr whois.nic.pr
 		// pro whois.registrypro.pro
@@ -223,7 +230,7 @@ public final class WhoisServers {
 	}
 
 	public static void main(String[] args) throws Exception {
-		final String domain = "hello.name";
+		final String domain = "helloasdfasdfasdf.org";
 		System.out.println(Whois.doQuery(getServer(domain), domain));
 	}
 }
