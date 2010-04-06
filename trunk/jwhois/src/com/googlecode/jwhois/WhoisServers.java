@@ -124,6 +124,7 @@ public final class WhoisServers {
 		// pt whois.dns.pt
 		// ro whois.rotld.ro
 		// ru whois.ripn.ru
+		SERVERS.put("ru", new WhoisServer("whois.ripn.ru", "No entries found for the selected source(s)."));
 		// sa saudinic.net.sa
 		// sb whois.nic.net.sb
 		// sc whois2.afilias-grs.net
