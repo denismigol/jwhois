@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public final class WhoisServers {
 
+	private static final String WHOIS_NIC_NAME = "whois.nic.name";
+	private static final String WHOIS_DOTMOBIREGISTRY_NET = "whois.dotmobiregistry.net";
 	private static final String WHOIS_AFILIAS_INFO = "whois.afilias.info";
 	private static final String WHOIS_EDUCAUSE_NET = "whois.educause.net";
 	private static final String WHOIS_NEULEVEL_BIZ = "whois.neulevel.biz";
@@ -34,9 +36,13 @@ public final class WhoisServers {
 				"- Available"));
 		WHOIS_SERVERS.put(WHOIS_NEULEVEL_BIZ, new WhoisServer(
 				WHOIS_NEULEVEL_BIZ, "Not found:"));
-		WHOIS_SERVERS.put(WHOIS_EDUCAUSE_NET, new WhoisServer(WHOIS_EDUCAUSE_NET, "No Match"));
+		WHOIS_SERVERS.put(WHOIS_EDUCAUSE_NET, new WhoisServer(
+				WHOIS_EDUCAUSE_NET, "No Match"));
+		WHOIS_SERVERS.put(WHOIS_AFILIAS_INFO, new WhoisServer(
+				WHOIS_AFILIAS_INFO, "NOT FOUND"));
+		WHOIS_SERVERS.put(WHOIS_DOTMOBIREGISTRY_NET, new WhoisServer(WHOIS_DOTMOBIREGISTRY_NET, "NOT FOUND"));
+		WHOIS_SERVERS.put(WHOIS_NIC_NAME, new WhoisServer(WHOIS_NIC_NAME, "No match."));
 		// TODO
-		WHOIS_SERVERS.put(WHOIS_AFILIAS_INFO, new WhoisServer(WHOIS_AFILIAS_INFO, "NOT FOUND"));
 	}
 
 	private static final Map<String, WhoisServer> DOMAIN_WHOIS_SERVERS = new HashMap<String, WhoisServer>();
@@ -131,12 +137,14 @@ public final class WhoisServers {
 		// mil whois.nic.mil
 		// mk whois.ripe.net
 		// mobi whois.dotmobiregistry.net
+		DOMAIN_WHOIS_SERVERS.put("mobi", WHOIS_SERVERS.get(WHOIS_DOTMOBIREGISTRY_NET));
 		// ms whois.nic.ms
 		// mt whois.ripe.net
 		// mu whois.nic.mu
 		// mx whois.nic.mx
 		// my whois.mynic.net.my
 		// name whois.nic.name
+		DOMAIN_WHOIS_SERVERS.put("name", WHOIS_SERVERS.get(WHOIS_NIC_NAME));
 		// net whois.verisign-grs.com
 		DOMAIN_WHOIS_SERVERS.put("net", WHOIS_SERVERS
 				.get(WHOIS_VERISIGN_GRS_COM));
@@ -215,7 +223,7 @@ public final class WhoisServers {
 	}
 
 	public static void main(String[] args) throws Exception {
-		final String domain = "hello.info";
+		final String domain = "hello.name";
 		System.out.println(Whois.doQuery(getServer(domain), domain));
 	}
 }
