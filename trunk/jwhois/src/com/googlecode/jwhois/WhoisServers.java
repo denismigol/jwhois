@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public final class WhoisServers {
 
+	private static final String WHOIS_AFILIAS_INFO = "whois.afilias.info";
+	private static final String WHOIS_EDUCAUSE_NET = "whois.educause.net";
 	private static final String WHOIS_NEULEVEL_BIZ = "whois.neulevel.biz";
 	private static final String WHOIS_NIC_AC = "whois.nic.ac";
 	private static final String WHOIS_RIPN_RU = "whois.ripn.ru";
@@ -32,7 +34,9 @@ public final class WhoisServers {
 				"- Available"));
 		WHOIS_SERVERS.put(WHOIS_NEULEVEL_BIZ, new WhoisServer(
 				WHOIS_NEULEVEL_BIZ, "Not found:"));
+		WHOIS_SERVERS.put(WHOIS_EDUCAUSE_NET, new WhoisServer(WHOIS_EDUCAUSE_NET, "No Match"));
 		// TODO
+		WHOIS_SERVERS.put(WHOIS_AFILIAS_INFO, new WhoisServer(WHOIS_AFILIAS_INFO, "NOT FOUND"));
 	}
 
 	private static final Map<String, WhoisServer> DOMAIN_WHOIS_SERVERS = new HashMap<String, WhoisServer>();
@@ -80,6 +84,7 @@ public final class WhoisServers {
 		// dm whois.nic.cx
 		// dz whois.ripe.net
 		// edu whois.educause.net
+		DOMAIN_WHOIS_SERVERS.put("edu", WHOIS_SERVERS.get(WHOIS_EDUCAUSE_NET));
 		// ee whois.eenet.ee
 		// eg whois.ripe.net
 		// es whois.ripe.net
@@ -103,6 +108,7 @@ public final class WhoisServers {
 		// il whois.isoc.org.il
 		// in whois.inregistry.net
 		// info whois.afilias.info
+		DOMAIN_WHOIS_SERVERS.put("info", WHOIS_SERVERS.get(WHOIS_AFILIAS_INFO));
 		// int whois.isi.edu
 		// iq vrx.net
 		// ir whois.nic.ir
@@ -209,7 +215,7 @@ public final class WhoisServers {
 	}
 
 	public static void main(String[] args) throws Exception {
-		final String domain = "google123412341234a.biz";
+		final String domain = "hello.info";
 		System.out.println(Whois.doQuery(getServer(domain), domain));
 	}
 }
