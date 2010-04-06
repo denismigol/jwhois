@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * 
@@ -14,7 +15,7 @@ import java.net.Socket;
 public class Whois {
 
 	static final String doQuery(final WhoisServer server,
-			final String query) throws IOException {
+			final String query) throws UnknownHostException, IOException {
 		final Socket socket = new Socket(server.domain, server.port);
 		final String lineSeparator = "\r\n";
 
@@ -34,8 +35,7 @@ public class Whois {
 		return ret.toString();
 	}
 
-	public static final boolean isDomainAvailable(final String domain)
-			throws IOException {
+	public static final boolean isDomainAvailable(final String domain) throws UnknownHostException, IOException {
 		final WhoisServer server = WhoisServers.getServer(domain);
 		return doQuery(server, domain).contains(server.response);
 	}
