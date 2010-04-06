@@ -13,7 +13,7 @@ import java.net.Socket;
  */
 public class Whois {
 
-	private static final String doQuery(final WhoisServer server,
+	static final String doQuery(final WhoisServer server,
 			final String query) throws IOException {
 		final Socket socket = new Socket(server.domain, server.port);
 		final String lineSeparator = "\r\n";
