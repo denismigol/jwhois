@@ -10,16 +10,33 @@ import java.util.Map;
  */
 public final class WhoisServers {
 
+	private static final String WHOIS_NIC_AC = "whois.nic.ac";
+	private static final String WHOIS_RIPN_RU = "whois.ripn.ru";
+	private static final String WHOIS_VERISIGN_GRS_COM = "whois.verisign-grs.com";
+
 	/**
 	 * Don't let anyone instantiate this class.
 	 */
 	private WhoisServers() {
 	}
 
-	private static final Map<String, WhoisServer> SERVERS = new HashMap<String, WhoisServer>();
+	private static final Map<String, WhoisServer> WHOIS_SERVERS = new HashMap<String, WhoisServer>();
 
 	static {
-		SERVERS.put("com", new WhoisServer("whois.verisign-grs.com", "")); // "whois.crsnic.net",
+		WHOIS_SERVERS.put(WHOIS_RIPN_RU, new WhoisServer(WHOIS_RIPN_RU,
+				"No entries found for the selected source(s)."));
+
+		// TODO
+		WHOIS_SERVERS.put(WHOIS_VERISIGN_GRS_COM, new WhoisServer(WHOIS_VERISIGN_GRS_COM,
+				""));
+		WHOIS_SERVERS.put(WHOIS_NIC_AC, new WhoisServer(WHOIS_NIC_AC,
+				"TODO"));
+	}
+
+	private static final Map<String, WhoisServer> DOMAIN_WHOIS_SERVERS = new HashMap<String, WhoisServer>();
+
+	static {
+		DOMAIN_WHOIS_SERVERS.put("com", WHOIS_SERVERS.get(WHOIS_VERISIGN_GRS_COM)); // "whois.crsnic.net",
 		// "No match for"
 		// TODO
 		// ac whois.nic.ac
@@ -112,6 +129,7 @@ public final class WhoisServers {
 		// my whois.mynic.net.my
 		// name whois.nic.name
 		// net whois.verisign-grs.com
+		DOMAIN_WHOIS_SERVERS.put("net", WHOIS_SERVERS.get(WHOIS_VERISIGN_GRS_COM));
 		// nf whois.nic.cx
 		// nl whois.domain-registry.nl
 		// no whois.norid.no
@@ -124,7 +142,7 @@ public final class WhoisServers {
 		// pt whois.dns.pt
 		// ro whois.rotld.ro
 		// ru whois.ripn.ru
-		SERVERS.put("ru", new WhoisServer("whois.ripn.ru", "No entries found for the selected source(s)."));
+		DOMAIN_WHOIS_SERVERS.put("ru", WHOIS_SERVERS.get(WHOIS_RIPN_RU));
 		// sa saudinic.net.sa
 		// sb whois.nic.net.sb
 		// sc whois2.afilias-grs.net
@@ -183,6 +201,6 @@ public final class WhoisServers {
 	 * @return
 	 */
 	public static WhoisServer getServer(final String domain) {
-		return SERVERS.get(getTLD(domain));
+		return DOMAIN_WHOIS_SERVERS.get(getTLD(domain));
 	}
 }
