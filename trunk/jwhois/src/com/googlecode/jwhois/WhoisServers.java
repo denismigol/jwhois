@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public final class WhoisServers {
 
+	private static final String WHOIS_NEULEVEL_BIZ = "whois.neulevel.biz";
 	private static final String WHOIS_NIC_AC = "whois.nic.ac";
 	private static final String WHOIS_RIPN_RU = "whois.ripn.ru";
 	private static final String WHOIS_VERISIGN_GRS_COM = "whois.verisign-grs.com";
@@ -25,21 +26,21 @@ public final class WhoisServers {
 	static {
 		WHOIS_SERVERS.put(WHOIS_RIPN_RU, new WhoisServer(WHOIS_RIPN_RU,
 				"No entries found for the selected source(s)."));
-
-		// TODO
-		WHOIS_SERVERS.put(WHOIS_VERISIGN_GRS_COM, new WhoisServer(WHOIS_VERISIGN_GRS_COM,
-				""));
+		WHOIS_SERVERS.put(WHOIS_VERISIGN_GRS_COM, new WhoisServer(
+				WHOIS_VERISIGN_GRS_COM, "No match for"));
 		WHOIS_SERVERS.put(WHOIS_NIC_AC, new WhoisServer(WHOIS_NIC_AC,
-				"TODO"));
+				"- Available"));
+		WHOIS_SERVERS.put(WHOIS_NEULEVEL_BIZ, new WhoisServer(
+				WHOIS_NEULEVEL_BIZ, "Not found:"));
+		// TODO
 	}
 
 	private static final Map<String, WhoisServer> DOMAIN_WHOIS_SERVERS = new HashMap<String, WhoisServer>();
 
 	static {
-		DOMAIN_WHOIS_SERVERS.put("com", WHOIS_SERVERS.get(WHOIS_VERISIGN_GRS_COM)); // "whois.crsnic.net",
-		// "No match for"
 		// TODO
-		// ac whois.nic.ac
+		// ac whois.nic.ac WHOIS_NIC_AC
+		DOMAIN_WHOIS_SERVERS.put("ac", WHOIS_SERVERS.get(WHOIS_NIC_AC));
 		// ae whois.nic.ae
 		// af whois.nic.af
 		// ag whois.nic.ag
@@ -54,6 +55,7 @@ public final class WhoisServers {
 		// bg whois.register.bg
 		// bi whois.nic.bi
 		// biz whois.neulevel.biz
+		DOMAIN_WHOIS_SERVERS.put("biz", WHOIS_SERVERS.get(WHOIS_NEULEVEL_BIZ));
 		// bj www.nic.bj
 		// br whois.nic.br
 		// bt whois.netnames.net
@@ -68,7 +70,8 @@ public final class WhoisServers {
 		// cn whois.cnnic.net.cn
 		// co.nl whois.co.nl
 		// com whois.verisign-grs.com
-		// coop whois.nic.coop
+		DOMAIN_WHOIS_SERVERS.put("com", WHOIS_SERVERS
+				.get(WHOIS_VERISIGN_GRS_COM)); // "whois.crsnic.net",
 		// cx whois.nic.cx
 		// cy whois.ripe.net
 		// cz whois.nic.cz
@@ -129,7 +132,8 @@ public final class WhoisServers {
 		// my whois.mynic.net.my
 		// name whois.nic.name
 		// net whois.verisign-grs.com
-		DOMAIN_WHOIS_SERVERS.put("net", WHOIS_SERVERS.get(WHOIS_VERISIGN_GRS_COM));
+		DOMAIN_WHOIS_SERVERS.put("net", WHOIS_SERVERS
+				.get(WHOIS_VERISIGN_GRS_COM));
 		// nf whois.nic.cx
 		// nl whois.domain-registry.nl
 		// no whois.norid.no
@@ -202,5 +206,10 @@ public final class WhoisServers {
 	 */
 	public static WhoisServer getServer(final String domain) {
 		return DOMAIN_WHOIS_SERVERS.get(getTLD(domain));
+	}
+
+	public static void main(String[] args) throws Exception {
+		final String domain = "google123412341234a.biz";
+		System.out.println(Whois.doQuery(getServer(domain), domain));
 	}
 }
