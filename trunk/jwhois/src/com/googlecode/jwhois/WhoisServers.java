@@ -184,8 +184,4 @@ public final class WhoisServers {
 	public static WhoisServer getServer(final String domain) {
 		return SERVERS.get(getTLD(domain));
 	}
-
-	public static void main(String[] args) {
-		System.out.println(getTLD(null));
-	}
 }
