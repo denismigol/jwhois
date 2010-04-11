@@ -62,7 +62,7 @@ public class TestDomains {
 		String testDomain;
 		for (final String tld : tlds) {
 			testDomain = domain + '.' + tld;
-			// System.out.println("testing: " + testDomain);
+			System.out.println("testing: " + testDomain);
 			// if (Whois.isDomainAvailable(testDomain)) {
 			if (doWhileException(testDomain)) {
 				ret.append(testDomain + ' ');
@@ -77,17 +77,18 @@ public class TestDomains {
 
 	public static void main(String[] args) throws Exception {
 		//final String[] tlds = { "com", "org", "net", "info", "name" };
-		final String[] tlds = { "com", "org", "net", };
+		final String[] tlds = { "com", "org", "net", "ru"};
 
 		final TestDomains gen = new TestDomains(new Character[] { 'a', 'b',
 				'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-				'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' }, 3);
+				'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' }, 4);
 
 		final Object[][] variations = gen.getVariations();
 
-		for (final Object[] s : variations) {
-			// System.out.println(toString(s));
-			testDomain(toString(s), tlds);
-		}
+//		for (final Object[] s : variations) {
+//			// System.out.println(toString(s));
+//			testDomain(toString(s), tlds);
+//		}
+		testDomain("qiqz", tlds);
 	}
 }
