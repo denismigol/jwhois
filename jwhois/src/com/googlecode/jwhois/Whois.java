@@ -47,9 +47,10 @@ public class Whois {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		System.out.println(isDomainAvailable("google.ru"));
-		System.out.println(isDomainAvailable("migool.net.ru"));
-		System.out.println(isDomainAvailable("migol.ru"));
-		System.out.println(isDomainAvailable("asdfasdfasdasdfasdf.ru"));
+//		System.out.println(isDomainAvailable("google.ru"));
+//		System.out.println(isDomainAvailable("migool.net.ru"));
+//		System.out.println(isDomainAvailable("migol.ru"));
+//		System.out.println(isDomainAvailable("asdfasdfasdasdfasdf.ru"));
+		System.out.println(isDomainAvailable("amigo.net.ru"));
 	}
 }
