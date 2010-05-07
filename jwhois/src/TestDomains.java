@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 import com.googlecode.jwhois.Whois;
 
@@ -71,13 +72,15 @@ public class TestDomains {
 
 		if (ret.length() > 0) {
 			ret.deleteCharAt(ret.length() - 1);
-			System.out.println(ret);
+			System.out.println("Available domains: " + ret);
+		} else {
+			System.out.println("There are no available domains in " + Arrays.toString(tlds));
 		}
 	}
 
 	public static void main(String[] args) throws Exception {
 		//final String[] tlds = { "com", "org", "net", "info", "name" };
-		final String[] tlds = { "com", "org", "net", "ru"};
+		final String[] tlds = { "com", "org", "net", "ru", "org.ru", "net.ru"};
 
 		final TestDomains gen = new TestDomains(new Character[] { 'a', 'b',
 				'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
@@ -89,6 +92,6 @@ public class TestDomains {
 //			// System.out.println(toString(s));
 //			testDomain(toString(s), tlds);
 //		}
-		testDomain("qiqz", tlds);
+		testDomain("epidem", tlds);
 	}
 }
