@@ -19,6 +19,7 @@ public final class WhoisServers {
 	private static final String WHOIS_NIC_AC = "whois.nic.ac";
 	private static final String WHOIS_RIPN_RU = "whois.ripn.ru";
 	private static final String WHOIS_VERISIGN_GRS_COM = "whois.verisign-grs.com";
+	private static final String WHOIS_RIPE_NET = "whois.ripe.net";
 
 	/**
 	 * Don't let anyone instantiate this class.
@@ -29,24 +30,17 @@ public final class WhoisServers {
 	private static final Map<String, WhoisServer> WHOIS_SERVERS = new HashMap<String, WhoisServer>();
 
 	static {
-		WHOIS_SERVERS.put(WHOIS_RIPN_RU, new WhoisServer(WHOIS_RIPN_RU,
-				"No entries found for the selected source(s)."));
-		WHOIS_SERVERS.put(WHOIS_VERISIGN_GRS_COM, new WhoisServer(
-				WHOIS_VERISIGN_GRS_COM, "No match for"));
-		WHOIS_SERVERS.put(WHOIS_NIC_AC, new WhoisServer(WHOIS_NIC_AC,
-				"- Available"));
-		WHOIS_SERVERS.put(WHOIS_NEULEVEL_BIZ, new WhoisServer(
-				WHOIS_NEULEVEL_BIZ, "Not found:"));
-		WHOIS_SERVERS.put(WHOIS_EDUCAUSE_NET, new WhoisServer(
-				WHOIS_EDUCAUSE_NET, "No Match"));
-		WHOIS_SERVERS.put(WHOIS_AFILIAS_INFO, new WhoisServer(
-				WHOIS_AFILIAS_INFO, "NOT FOUND"));
-		WHOIS_SERVERS.put(WHOIS_DOTMOBIREGISTRY_NET, new WhoisServer(
-				WHOIS_DOTMOBIREGISTRY_NET, "NOT FOUND"));
-		WHOIS_SERVERS.put(WHOIS_NIC_NAME, new WhoisServer(WHOIS_NIC_NAME,
-				"No match."));
 		WHOIS_SERVERS
-				.put(WHOIS_PIR_ORG, new WhoisServer(WHOIS_PIR_ORG, "NOT FOUND"));
+				.put(WHOIS_RIPN_RU, new WhoisServer(WHOIS_RIPN_RU, "No entries found for the selected source(s)."));
+		WHOIS_SERVERS.put(WHOIS_VERISIGN_GRS_COM, new WhoisServer(WHOIS_VERISIGN_GRS_COM, "No match for"));
+		WHOIS_SERVERS.put(WHOIS_NIC_AC, new WhoisServer(WHOIS_NIC_AC, "- Available"));
+		WHOIS_SERVERS.put(WHOIS_NEULEVEL_BIZ, new WhoisServer(WHOIS_NEULEVEL_BIZ, "Not found:"));
+		WHOIS_SERVERS.put(WHOIS_EDUCAUSE_NET, new WhoisServer(WHOIS_EDUCAUSE_NET, "No Match"));
+		WHOIS_SERVERS.put(WHOIS_AFILIAS_INFO, new WhoisServer(WHOIS_AFILIAS_INFO, "NOT FOUND"));
+		WHOIS_SERVERS.put(WHOIS_DOTMOBIREGISTRY_NET, new WhoisServer(WHOIS_DOTMOBIREGISTRY_NET, "NOT FOUND"));
+		WHOIS_SERVERS.put(WHOIS_NIC_NAME, new WhoisServer(WHOIS_NIC_NAME, "No match."));
+		WHOIS_SERVERS.put(WHOIS_PIR_ORG, new WhoisServer(WHOIS_PIR_ORG, "NOT FOUND"));
+		WHOIS_SERVERS.put(WHOIS_RIPE_NET, new WhoisServer(WHOIS_RIPE_NET, "No entries found"));
 		// TODO
 	}
 
@@ -85,8 +79,7 @@ public final class WhoisServers {
 		// cn whois.cnnic.net.cn
 		// co.nl whois.co.nl
 		// com whois.verisign-grs.com
-		DOMAIN_WHOIS_SERVERS.put("com", WHOIS_SERVERS
-				.get(WHOIS_VERISIGN_GRS_COM)); // "whois.crsnic.net",
+		DOMAIN_WHOIS_SERVERS.put("com", WHOIS_SERVERS.get(WHOIS_VERISIGN_GRS_COM)); // "whois.crsnic.net",
 		// cx whois.nic.cx
 		// cy whois.ripe.net
 		// cz whois.nic.cz
@@ -142,8 +135,7 @@ public final class WhoisServers {
 		// mil whois.nic.mil
 		// mk whois.ripe.net
 		// mobi whois.dotmobiregistry.net
-		DOMAIN_WHOIS_SERVERS.put("mobi", WHOIS_SERVERS
-				.get(WHOIS_DOTMOBIREGISTRY_NET));
+		DOMAIN_WHOIS_SERVERS.put("mobi", WHOIS_SERVERS.get(WHOIS_DOTMOBIREGISTRY_NET));
 		// ms whois.nic.ms
 		// mt whois.ripe.net
 		// mu whois.nic.mu
@@ -152,8 +144,7 @@ public final class WhoisServers {
 		// name whois.nic.name
 		DOMAIN_WHOIS_SERVERS.put("name", WHOIS_SERVERS.get(WHOIS_NIC_NAME));
 		// net whois.verisign-grs.com
-		DOMAIN_WHOIS_SERVERS.put("net", WHOIS_SERVERS
-				.get(WHOIS_VERISIGN_GRS_COM));
+		DOMAIN_WHOIS_SERVERS.put("net", WHOIS_SERVERS.get(WHOIS_VERISIGN_GRS_COM));
 		// nf whois.nic.cx
 		// nl whois.domain-registry.nl
 		// no whois.norid.no
@@ -195,6 +186,7 @@ public final class WhoisServers {
 		// tw whois.apnic.net
 		// tv whois.nic.tv
 		// ua whois.ripe.net
+		DOMAIN_WHOIS_SERVERS.put("ua", WHOIS_SERVERS.get(WHOIS_RIPE_NET));
 		// uk whois.nic.uk
 		// gov.uk whois.ja.net
 		// us whois.nic.us
@@ -230,7 +222,7 @@ public final class WhoisServers {
 	}
 
 	public static void main(String[] args) throws Exception {
-		final String domain = "helloasdfasdfasdf.org";
+		final String domain = "helloasdfasdfasdf.ua";
 		System.out.println(Whois.doQuery(getServer(domain), domain));
 	}
 }
